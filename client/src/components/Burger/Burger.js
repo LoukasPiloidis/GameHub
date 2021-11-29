@@ -9,12 +9,20 @@ const Burger = () => {
 
   return (
     <div className="page-header__burger">
-      <div className="box">
-        <div className="btn not-active" onClick={handleClick}>
-          <span></span>
-          <span></span>
-          <span></span>
+      <div className="burger__burger-icon">
+        <div className="burger-icon__button not-active" onClick={handleClick}>
+          <span className="button__line"></span>
+          <span className="button__line"></span>
+          <span className="button__line"></span>
         </div>
+      </div>
+      <div className="burger__menu hidden">
+        <ul className="menu__list">
+          <li>Action</li>
+          <li>Fantasy</li>
+          <li>Adventure</li>
+          <li>Simulation</li>
+        </ul>
       </div>
     </div>
   );

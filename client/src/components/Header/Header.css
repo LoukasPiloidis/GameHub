@@ -1,9 +1,14 @@
-.page-header {
+.page-header__nav {
   width: 100vw;
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: rgb(92, 92, 174); */
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
