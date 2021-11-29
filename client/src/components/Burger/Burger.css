@@ -162,6 +162,30 @@
   padding-bottom: 0;
 }
 
-.hidden {
-  display: none;
+
+.show {
+  animation: ease .7s show-animation forwards;
+}
+
+@keyframes show-animation {
+  0% {
+    left: -40vw;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.hide {
+  animation: ease .7s hide-animation forwards;
+}
+
+@keyframes hide-animation {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -40vw;
+    display: none;
+  }
 }

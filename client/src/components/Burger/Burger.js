@@ -1,10 +1,16 @@
-import React from 'react';
+/* eslint-disable no-unused-expressions */
+import React, { useState } from 'react';
 import './Burger.css';
 
 const Burger = () => {
+  const [displayMenu, setDisplayMenu] = useState(false)
+
+
   const handleClick = e => {
-    e.target.closest('div').classList.toggle('active');
-    e.target.closest('div').classList.toggle('not-active');
+    const classes = e.target.closest('div').classList;
+    classes.toggle('active');
+    classes.toggle('not-active');
+    setDisplayMenu(!displayMenu);
   };
 
   return (
@@ -16,7 +22,7 @@ const Burger = () => {
           <span className="button__line"></span>
         </div>
       </div>
-      <div className="burger__menu hidden">
+      <div className={`burger__menu ${displayMenu ? "show" : "hide"}`}>
         <ul className="menu__list">
           <li>Action</li>
           <li>Fantasy</li>
