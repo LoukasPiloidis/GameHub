@@ -1,10 +1,15 @@
 /* eslint-disable no-unused-expressions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Burger.css';
 
 const Burger = () => {
-  const [displayMenu, setDisplayMenu] = useState(false)
+  const [displayMenu, setDisplayMenu] = useState(false);
+  const [onLoadSetter, setOnLoadSetter] = useState(false);
 
+  useEffect(() => {
+    setOnLoadSetter(true)
+    console.log(onLoadSetter);
+  }, [])
 
   const handleClick = e => {
     const classes = e.target.closest('div').classList;
@@ -22,7 +27,7 @@ const Burger = () => {
           <span className="button__line"></span>
         </div>
       </div>
-      <div className={`burger__menu ${displayMenu ? "show" : "hide"}`}>
+      <div className={`burger__menu ${displayMenu ? "show" : "hide"} ${onLoadSetter ? "" : "hidden"}`}>
         <ul className="menu__list">
           <li>Action</li>
           <li>Fantasy</li>
