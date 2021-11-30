@@ -28,6 +28,41 @@ export const getGames = async (req, res) => {
   res.status(200).send(games);
 };
 
+export const getHomeData = async (req, res) => {  
+  const getCurrentMonth = () => {
+    const month = new Date().getMonth() + 1;
+    if(month < 10){
+        return `0${month}`
+    }else{
+        return month;
+    }
+  };
+
+  const getCurrentDay = () => {
+    const day = new Date().getDate();
+    if(day < 10){
+        return `0${day}`
+    }else{
+        return day;
+    }
+  };
+
+  const currentYear = new Date().getFullYear();
+  const currentMonth = getCurrentMonth();
+  const currentDay = getCurrentDay();
+  const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+  const lastYear = `${currentYear-1}-${currentMonth}-${currentDay}`;
+  const lastTenYears = `${currentYear-10}-${currentMonth}-${currentDay}`;
+
+  const data = await axios.get(`${baseUrlRAWG}games?dates=${lastYear},${currentDate}&ordering=-rating&page_size=5&key=${process.env.RAWG_KEY}`);
+  const popularGames = data.data;
+  const result = await axios.get(`${baseUrlRAWG}games?dates=${lastTenYears},${currentDate}&page_size=5&metacritic=90,100&key=${process.env.RAWG_KEY}`);
+  const topRatedGames = result.data;
+
+  res.status(200).send([popularGames, topRatedGames]);
+};
+
+
 // export const getGameIgdb = async (req, res) => {
 //   const accessToken = await axios.post(`https://id.twitch.tv/oauth2/token?client_id=${process.env.IGDB_CLIENT_ID}&client_secret=${process.env.IGDB_CLIENT_SECRET}&grant_type=client_credentials`);
 
