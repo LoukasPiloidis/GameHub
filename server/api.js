@@ -19,6 +19,9 @@ const getGamesInfo = async name => {
 export const getGames = async (req, res) => {
   const { searchQuery } = req.params;
   const data = await hltbService.search(`${searchQuery}`);
+  if (data.length < 1) {
+    return res.send('Your search returned no results.')
+  };
   const name = data.sort((a, b) => b.similarity - a.similarity)
                       .map(game => game.name)[0];
   const games = await getGamesInfo(name);
