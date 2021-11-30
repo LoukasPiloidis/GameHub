@@ -2,6 +2,8 @@
 
 .page-header__logo-link {
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .page-header__logo-container {
