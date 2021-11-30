@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { setSearchQuery } from '../../slices/slice';
+import { setSearchQuery, setSearchResults } from '../../slices/slice';
 import './SearchForm.css';
 
 const SearchForm = () => {
@@ -23,7 +23,9 @@ const SearchForm = () => {
     );
     e.target.reset();
     const data = await axios.get(`http://localhost:4000/api/games/${query}`);
-    console.log(data.data);
+    dispatch(
+      setSearchResults(data.data)
+    );
     navigate(`/results/${query}`);
   };
 

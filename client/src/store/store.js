@@ -4,5 +4,6 @@ import dataSliceReducer from '../slices/slice';
 export default configureStore({
   reducer: {
     query: dataSliceReducer,
+    searchResults: dataSliceReducer,
   },
 });
