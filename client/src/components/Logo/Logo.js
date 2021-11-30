@@ -5,7 +5,7 @@ import './Logo.css';
 
 const Logo = () => {
   return (
-    <Link to="/">
+    <Link to="/" className="page-header__logo-link">
       <div className="page-header__logo-container">
         <img className="logo-container__logo-image" src={logoImage} alt="GameHub logo" />
         <h1 className="logo-container__logo-title">GameHub</h1>
