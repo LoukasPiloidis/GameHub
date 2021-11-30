@@ -1,0 +1,8 @@
+.page-content__results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  font-size: 0.8rem;
+}

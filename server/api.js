@@ -13,7 +13,6 @@ const getGamesInfo = async name => {
       name: game.name,
       background_image: game.background_image,
     })});
-  console.log(result);
   return result;
 };
 
@@ -23,7 +22,7 @@ export const getGames = async (req, res) => {
   const name = data.sort((a, b) => b.similarity - a.similarity)
                       .map(game => game.name)[0];
   const games = await getGamesInfo(name);
-  res.send(games);
+  res.status(200).send(games);
 };
 
 // export const getGameIgdb = async (req, res) => {

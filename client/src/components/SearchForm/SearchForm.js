@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
@@ -8,17 +10,21 @@ import './SearchForm.css';
 const SearchForm = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState();
+  const navigate = useNavigate();
 
   const handleChange = e => {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     dispatch(
       setSearchQuery(query)
     );
     e.target.reset();
+    const data = await axios.get(`http://localhost:4000/api/games/${query}`);
+    console.log(data.data);
+    navigate(`/results/${query}`);
   };
 
   return (
